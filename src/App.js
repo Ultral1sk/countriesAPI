@@ -1,41 +1,36 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import {  Route, Switch, Router } from 'react-router-dom'
-import DataReceiver from './components/DataReceiver';
+import React, { useState, useEffect } from 'react';
+import { Route }                      from 'react-router-dom'
+import axios                          from 'axios'
 
-import axios from 'axios'
+import DataReceiver                   from './components/DataReceiver';
+import DataRendering                  from './components/DataRendering';
+import Navbar                         from './components/Navbar';
+import FilterData                     from './components/FilterData';
 
 import './App.css';
-import DataRendering from './components/DataRendering';
 
 
 function App( ) {
 
-  var [state, setstate] = useState([])
-
-
+  const [state, setstate] = useState([]);
 
   useEffect(() => {
     
     axios.get(`https://restcountries.eu/rest/v2/all`)
-    .then(response => {
-      setstate(response.data);  
-      
 
-    })
-    .catch(err => err);
+    .then(response =>  { setstate(response.data) })
+    .catch(err     =>  { return err });
     
   }, []);
 
     
     return (
-      <div className="App">
-      <Route exact path='/' render={ () => ( <DataRendering state={state} /> )} />
-      
-      <Route exact  path='/country/:countryName' component={DataReceiver} />
-
-        
-     
-      </div>
+      < >
+        <Navbar />
+        <FilterData data={state} />
+        <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
+        <Route exact  path='/country/:countryName' component={DataReceiver}        />
+      </>
     );
 }
 

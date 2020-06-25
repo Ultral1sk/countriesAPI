@@ -1,34 +1,61 @@
-import React from 'react'
-import { Link, Route, useHistory } from 'react-router-dom'
+import React                from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
 
-const DataReceiver = ( props ) => {
+const DataReceiver = ( ) => {
 
       const history = useHistory();
-      const incommingProps = history.location.state
- 
+      const incommingProps = history.location.state  
 
+      const borders = incommingProps.borders.map( ( border,key ) => <span key={ key } className=" badge badge-pill badge-danger ml-1 mr-2 ">
+                                                                              { border }
+                                                                    </span>
+      )
+      return <div>
+                  <div style={{ padding :  '8rem 0 0 14.5rem' }}>
+                   
 
-      console.log(incommingProps)
-  
-            
-      //       return 
-          
-      // })
-      // : [] 
-      return <div className="d-flex justify-content-center flex-wrap">
-           <div  className="ml-3 mr-3 mt-3 mb-3"> 
-                  <div className="card " style={{width: "17rem", height: ''}} >
-                   <img className="card-img-top" width="100%" height="180px" src={incommingProps.flag} alt="..."/>
-                 <h2 className="card-title">{incommingProps.name}</h2>
-                    <h5 className="card-title">{incommingProps.nativeName}</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn btn-primary">Go somewhere</a>
-                    </div>
+                        <Link to="/"     className=" backButton pt-2 pb-2  ">
+                              <i className="fa fa-arrow-left pl-5 "></i>
+                              <i className="pl-1 pr-5">Back</i>
+                        </Link>
                   </div>
-         </div>
+
+
+            <div                         className=" container-fluid d-flex justify-content-center align-items-center " style={{ height : '65vh' }} >
+
+
+                        <div             className=" row col-10 justify-content-around ">
+                              <div       className=" col-12 col-md-12 " style={{ maxWidth: '600px', width: '100%'}}>
+                                    <img className=" img " width=" 100% " height=" 100% "      src={incommingProps.flag} alt={incommingProps.name} />   
+                              </div>
+
+                              <div       className=" col-3  text-white pt-5 ">
+                                    <h2  className=" card-title ">                                 {incommingProps.name}                  </h2>
+                                    <p   className=" card-title pt-5 "> <b>Native name</b>       : {incommingProps.nativeName}            </p>
+                                    <p   className=" card-text ">       <b>Region</b>            : {incommingProps.region}                </p>
+                                    <p   className=" card-text ">       <b>Sub Region</b>        : {incommingProps.subregion}             </p>
+                                    <p   className=" card-text ">       <b>Capital</b>           : {incommingProps.capital}               </p>
+                                    <p   className=" card-text ">       <b>Borders</b>           : {borders}                              </p>
+                              </div>  
+                              
+                              <section   className=" text-white col-3  pt-5 ">
+                                    <p   className=" pt-5 mt-5 ">      <b>Top domains </b>      : {incommingProps.topLevelDomain}         </p>
+                                    <p>                                <b>Currencies</b>        : {incommingProps.currencies[0].name}     </p>
+                                    <p>                                <b>Symbol</b>            : {incommingProps.currencies[0].symbol}   </p>
+                                    <p>                                <b>Languages</b>         : {incommingProps.languages[0].name}      </p>                       
+                              </section>
+                        </div> 
+
+
+            </div>
+
+
+      </div>
 
     
 }
 
 export default DataReceiver
+
+
