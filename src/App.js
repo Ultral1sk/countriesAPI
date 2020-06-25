@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, Suspense } from 'react';
+import {  Route, Switch, Router } from 'react-router-dom'
+import DataReceiver from './components/DataReceiver';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import axios from 'axios'
+
+import './App.css';
+import DataRendering from './components/DataRendering';
+
+
+function App( ) {
+
+  var [state, setstate] = useState([])
+
+
+
+  useEffect(() => {
+    
+    axios.get(`https://restcountries.eu/rest/v2/all`)
+    .then(response => {
+      setstate(response.data);  
+      
+
+    })
+    .catch(err => err);
+    
+  }, []);
+
+    
+    return (
+      <div className="App">
+      <Route exact path='/' render={ () => ( <DataRendering state={state} /> )} />
+      
+      <Route exact  path='/country/:countryName' component={DataReceiver} />
+
+        
+     
+      </div>
+    );
 }
 
 export default App;
