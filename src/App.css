@@ -46,7 +46,13 @@ body {
   
 }
 .search-main-wrapper {
-  padding: 5rem 0 0 13rem;
+  max-width: 66%;
+  width: 100%;
+  margin: 0 auto;
+  height: 25vh;
+  display: flex;
+ 
+  align-items: center;
 }
 
 

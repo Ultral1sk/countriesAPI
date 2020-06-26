@@ -5,8 +5,7 @@ import axios                          from 'axios'
 import DataReceiver                   from './components/DataReceiver';
 import DataRendering                  from './components/DataRendering';
 import Navbar                         from './components/Navbar';
-import FilterData                     from './components/FilterData';
-
+import FilterData                     from './components/FilterData'
 import './App.css';
 
 
@@ -27,7 +26,7 @@ function App( ) {
     return (
       < >
         <Navbar />
-        <FilterData data={state} />
+     
         <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
         <Route exact  path='/country/:countryName' component={DataReceiver}        />
       </>

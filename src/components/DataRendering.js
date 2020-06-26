@@ -1,42 +1,84 @@
-import React      from 'react'
-import { Link }   from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link }            from 'react-router-dom'
+import CountryCard         from './CountryCard'
 
 
 const DataRendering = ( props ) => {
 
       // this data is a state that is passed from the parrent component
-      const countriesData = props.state;
+      let countriesData =  props.state;
+ 
+      const [toggleData, settoggleData]       = useState(true)
+      const [searchCountry, setSearchCountry] = useState('')
+      const [filteredGames, setFilteredGames] = useState('')
+      
+      const searchHandler = ( e ) => {
+
+            setSearchCountry(e.target.value);
+            filterGames(e.target.value );
+      }
+
+      const filterGames = ( inputValue ) => {
+            
+            const filteredGame = countriesData.filter(country => country.name.toLowerCase().trim().includes(inputValue)); 
+            settoggleData(!toggleData)
+            return setFilteredGames(filteredGame);
+      }
+      
+      // here since the data wont be comming immediately we have to take into consideration that the value inside the countriesData will be undefined
+      // and we have to make a condition otherwise it'll throw an error   
+      const countryToFilter = filteredGames ?  filteredGames.map((country, key ) => { 
+            return <Link  key={key}  className="text-white text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
+                        <CountryCard 
+                             
+                              countryFlag       ={country.flag} 
+                              countryName       ={country.name} 
+                              countryRegion     ={country.region}
+                              countryCapital    ={country.capital}
+                              countryPopulation ={country.population}
+                              />
+                  </Link>                
+            })
+            : null
+
+      const renderCountries = countriesData ? countriesData.map((country, key ) => { 
+            return <Link key={key}  className="text-white text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
+                        <CountryCard 
+                              
+                              countryFlag       ={country.flag} 
+                              countryName       ={country.name} 
+                              countryRegion     ={country.region}
+                              countryCapital    ={country.capital}
+                              countryPopulation ={country.population}
+                              />
+                  </Link>                
+            })    
+            : null
       
 
-      // here since the data wont be comming immediately we have to take into consideration that the value inside the countriesData will be undefined
-      // and we have to make a condition otherwise it'll throw an error       
-      const renderCountries = countriesData ? countriesData.map((country, key )=> {     
-            // wrapper, innerrwrapper, link wrapper
-            return <div key={key}        className=" cards-wrapper "> 
-                        <div                className="card-main-wrapper  card text-dark " style={{width: "20rem", height: '27rem'}} >
-                              <Link            className="text-white text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
+      return <div className=" container-fluid d-flex justify-content-start flex-wrap ">
+      <div className="search-main-wrapper ">
+                  <div className="form-group has-search">
+                        <span className="fa fa-search form-control-feedback"></span>
+                              <input 
+                                    onChange={searchHandler} 
+                                    value={searchCountry}
+                                    autoComplete="off"
+                                    name="searchCountry" 
+                                    type="text" 
+                                    className="search-input-control form-control" 
+                                    placeholder="Search"     
+                              />
+                  </div>      
+      </div> 
 
-
-                                    <div       className=" card-image-wrapper ">
-                                          <img className=" img "                src={country.flag} alt={country.name} />   
-                                    </div>
-
-                                    <div       className=" card-body mt-3 ">
-                                          <h3  className=" card-title ">            {country.name}           </h3>
-                                          <p   className=" card-text ">Region     : {country.region}         </p>
-                                          <p   className=" card-text ">Capital    : {country.capital}        </p>
-                                          <p   className=" card-text ">Population : {country.population}     </p>   
-                                    </div>
-
-                        
-                              </Link>
-                        </div>
-                   </div>
-      })
-      : [] 
-
-      return <div className=" container-fluid d-flex justify-content-center flex-wrap ">
-            {renderCountries}
+      <div className=" container-fluid d-flex justify-content-center flex-wrap ">
+            { toggleData ? renderCountries : countryToFilter}
+      </div>
+           
+   
+      
+           
       </div>
        
     
