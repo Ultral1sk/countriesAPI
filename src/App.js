@@ -14,6 +14,7 @@ function App( ) {
 
   const [state, setstate] = useState([]);
   const [toggleMode, settoggleMode] = useState(true)
+  
   const toggleModeHandler = async (togleMode) => {
     return   settoggleMode   ( await togleMode)   // state is being toggled from the children component
 
