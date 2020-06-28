@@ -9,8 +9,8 @@ const DataRendering = ( props ) => {
       let countriesData =  props.state;
       let toggleMode = props.toggleMode     
                                                             
-      const [ toggleClasses   , settoggleClasses ]    = useState(true)
-      const [ toggleData      , settoggleData ]       = useState(true)
+      const [ toggleClasses   , settoggleClasses ]    = useState(true)  
+      const [ toggleData      , settoggleData ]       = useState(true)        // toggling the data in the JSX elements
       const [ toggleRegion    , settoggleRegion ]     = useState(false)
       const [ searchCountry   , setSearchCountry ]    = useState('')          // input value 
       const [ filteredCountry , setFilteredCountry ]  = useState('')
