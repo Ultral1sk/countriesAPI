@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Route }                      from 'react-router-dom'
+import React, { useState, useEffect, Suspense } from 'react';
+import { Route, Switch }                      from 'react-router-dom'
 import axios                          from 'axios'
-
-import DataReceiver                   from './components/DataReceiver';
-import DataRendering                  from './components/DataRendering';
+import Loading                        from './assets/Loading'
+import DataReceiver                  from './components/DataReceiver';
 import Navbar                         from './components/Navbar';
+import ErrorRoute                     from './assets/ErrorRoute';
 import FilterData                     from './components/FilterData'
 import './App.css';
+
+const DataRendering = React.lazy(() => import('./components/DataRendering'));
 
 
 function App( ) {
@@ -26,9 +28,15 @@ function App( ) {
     return (
       < >
         <Navbar />
-     
-        <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
-        <Route exact  path='/country/:countryName' component={DataReceiver}        />
+          <Switch>
+            <Suspense fallback={<Loading />}>
+              <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
+              <Route exact  path='/country/:countryName' component={DataReceiver}        />
+              <Route exact  path='*' component={ErrorRoute}        />  
+            </Suspense>
+          </Switch>
+        
+
       </>
     );
 }

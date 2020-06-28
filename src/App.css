@@ -1,6 +1,6 @@
 body {
 
-  background-color: #202c37  !important ;
+  background-color: #ffffff  !important ;
 }
 
 .cards-wrapper{
@@ -13,24 +13,33 @@ body {
 }
 
 .navbar {
-  background-color: #2b3945!important;
+  background-color: #000000!important;
+  width: 100%;
 }
 
 
 .has-search .form-control {
   padding-left: 2.375rem;
-  background-color: #2b3945!important;
+  background-color: #ffffff!important;
   border: 1px solid #161b20!important;
+  outline: black !important;
   width: 300px;
-  color: white;
+  color: black;
 }
-.has-search .form-control::placeholder {
 
-  color: white;
+.has-search .form-control::placeholder {
+  outline: black !important;
+
+  color: black;
 }
 .search-input-control {
   height: 3rem !important;
-  color: white !important;
+  color: black !important;
+}
+.search-input-control:focus {
+  outline: black !important;
+  border :  1px solid black !important;
+
 }
 
 .has-search .form-control-feedback {
@@ -42,7 +51,7 @@ body {
   line-height: 3rem;
   text-align: center;
   pointer-events: none;
-  color: white;
+  color: rgb(0, 0, 0);
   
 }
 .search-main-wrapper {
@@ -51,6 +60,7 @@ body {
   margin: 0 auto;
   height: 25vh;
   display: flex;
+  margin: 0 !important;
  
   align-items: center;
 }
@@ -59,17 +69,48 @@ body {
 
 
 .backButton{
-  background-color: #052055a1;
-  border: 1px solid #ffffff38;
-  color: white !important;
+  background-color: #fcfcfc;
+  border: 1px solid #00000038;
+  color: black !important;
 
   
 }
+#rendered-country-data-on {
+  max-width: 80%;
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
+#rendered-country-data-off {
+  display: none !important;
+}
+
+#rendered-region-data {
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
 
 .card-main-wrapper { 
-  background-color: #2b3945 !important;
-  color: white;
+  background-color: #ffffff !important;
+  color: black !important;
 }
+
+.select-region {
+  background-color: rgb(255, 255, 255);
+  padding: 0.2rem 3rem 0.2rem 0;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid #000000;
+
+}
+.select-region option {
+  
+  
+}
+
 
 .img {
   width: 100%;
@@ -79,10 +120,10 @@ body {
 }
 
 .backButton:hover{
-  background-color: #08378fa1;
+  background-color: #f1f1f1;
   transition: background-color 0.2s;
-  border: 1px solid #ffffff38;
-  color: white;
+  border: 1px solid #00000038;
+  color: rgb(0, 0, 0);
   text-decoration: none;
 
   

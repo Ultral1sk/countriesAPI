@@ -12,7 +12,7 @@ const DataReceiver = ( ) => {
                                                                     </span>
       )
       return <div>
-                  <div style={{ padding :  '8rem 0 0 14.5rem' }}>
+                  <div style={{ padding :  '8rem 0 0 14.5rem',margin : '3rem 0rem' }}>
                    
 
                         <Link to="/"     className=" backButton pt-2 pb-2  ">
@@ -22,7 +22,7 @@ const DataReceiver = ( ) => {
                   </div>
 
 
-            <div                         className=" container-fluid d-flex justify-content-center align-items-center " style={{ height : '65vh' }} >
+            <div                         className=" container-fluid d-flex justify-content-center align-items-center " style={{ height : '100%' }} >
 
 
                         <div             className=" row col-10 justify-content-around ">
@@ -30,7 +30,7 @@ const DataReceiver = ( ) => {
                                     <img className=" img " width=" 100% " height=" 100% "      src={incommingProps.flag} alt={incommingProps.name} />   
                               </div>
 
-                              <div       className=" col-3  text-white pt-5 ">
+                              <div       className=" col-3  text-dark pt-5 ">
                                     <h2  className=" card-title ">                                 {incommingProps.name}                  </h2>
                                     <p   className=" card-title pt-5 "> <b>Native name</b>       : {incommingProps.nativeName}            </p>
                                     <p   className=" card-text ">       <b>Region</b>            : {incommingProps.region}                </p>
@@ -39,7 +39,7 @@ const DataReceiver = ( ) => {
                                     <p   className=" card-text ">       <b>Borders</b>           : {borders}                              </p>
                               </div>  
                               
-                              <section   className=" text-white col-3  pt-5 ">
+                              <section   className=" text-dark col-3  pt-5 ">
                                     <p   className=" pt-5 mt-5 ">      <b>Top domains </b>      : {incommingProps.topLevelDomain}         </p>
                                     <p>                                <b>Currencies</b>        : {incommingProps.currencies[0].name}     </p>
                                     <p>                                <b>Symbol</b>            : {incommingProps.currencies[0].symbol}   </p>
