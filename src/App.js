@@ -5,7 +5,6 @@ import Loading                        from './assets/Loading'
 import DataReceiver                  from './components/DataReceiver';
 import Navbar                         from './components/Navbar';
 import ErrorRoute                     from './assets/ErrorRoute';
-import FilterData                     from './components/FilterData'
 import './App.css';
 
 const DataRendering = React.lazy(() => import('./components/DataRendering'));
@@ -28,15 +27,13 @@ function App( ) {
     return (
       < >
         <Navbar />
-          <Switch>
             <Suspense fallback={<Loading />}>
-              <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
-              <Route exact  path='/country/:countryName' component={DataReceiver}        />
-              <Route exact  path='*' component={ErrorRoute}        />  
+              <Switch>
+                  <Route exact  path='/' render={ () => ( <DataRendering state={state} /> )} /> 
+                  <Route exact  path='/country/:countryName' component={DataReceiver}        />
+                  <Route exact  path='/*' component={ErrorRoute}        />  
+              </Switch>
             </Suspense>
-          </Switch>
-        
-
       </>
     );
 }

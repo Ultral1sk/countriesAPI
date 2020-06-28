@@ -17,7 +17,7 @@ const DataReceiver = ( ) => {
 
                         <Link to="/"     className=" backButton pt-2 pb-2  ">
                               <i className="fa fa-arrow-left pl-5 "></i>
-                              <i className="pl-1 pr-5">Back</i>
+                              <i className="pl-2 pr-5">Back</i>
                         </Link>
                   </div>
 
@@ -30,16 +30,18 @@ const DataReceiver = ( ) => {
                                     <img className=" img " width=" 100% " height=" 100% "      src={incommingProps.flag} alt={incommingProps.name} />   
                               </div>
 
-                              <div       className=" col-3  text-dark pt-5 ">
+                              <div       className=" col-3  text-white pt-5 ">
                                     <h2  className=" card-title ">                                 {incommingProps.name}                  </h2>
                                     <p   className=" card-title pt-5 "> <b>Native name</b>       : {incommingProps.nativeName}            </p>
+
                                     <p   className=" card-text ">       <b>Region</b>            : {incommingProps.region}                </p>
                                     <p   className=" card-text ">       <b>Sub Region</b>        : {incommingProps.subregion}             </p>
                                     <p   className=" card-text ">       <b>Capital</b>           : {incommingProps.capital}               </p>
+                                    <p   className=" card-title ">      <b>Population</b>        : {incommingProps.population}            </p>
                                     <p   className=" card-text ">       <b>Borders</b>           : {borders}                              </p>
                               </div>  
                               
-                              <section   className=" text-dark col-3  pt-5 ">
+                              <section   className=" text-white col-3  pt-5 ">
                                     <p   className=" pt-5 mt-5 ">      <b>Top domains </b>      : {incommingProps.topLevelDomain}         </p>
                                     <p>                                <b>Currencies</b>        : {incommingProps.currencies[0].name}     </p>
                                     <p>                                <b>Symbol</b>            : {incommingProps.currencies[0].symbol}   </p>

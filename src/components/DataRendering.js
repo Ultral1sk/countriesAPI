@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { Link }            from 'react-router-dom'
 import CountryCard         from './CountryCard'
 
@@ -8,8 +8,8 @@ const DataRendering = ( props ) => {
       // this data is a state that is passed from the parrent component
       let countriesData =  props.state;
       const [ toggleClasses   , settoggleClasses ]    = useState(true)
-      const [ toggleRegion    , settoggleRegion ]     = useState(false)
       const [ toggleData      , settoggleData ]       = useState(true)
+      const [ toggleRegion    , settoggleRegion ]     = useState(false)
       const [ searchCountry   , setSearchCountry ]    = useState('')
       const [ filteredCountry , setFilteredCountry ]  = useState('')
       const [ filterRegions   , setFilterRegions ]    = useState([])
@@ -65,20 +65,6 @@ const DataRendering = ( props ) => {
             })
             : null
 
-      let renderCountries = countriesData ? countriesData.map((country, key ) => { 
-                  return <Link key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
-                              <CountryCard 
-                                 
-                                    countryFlag       ={country.flag} 
-                                    countryName       ={country.name} 
-                                    countryRegion     ={country.region}
-                                    countryCapital    ={country.capital}
-                                    countryPopulation ={country.population}
-                                    />
-                        </Link>                
-            })    
-      : null
-
       const regionToFilter = targetedRegion ?  targetedRegion.map((country, key ) => { 
                   //on click send the value to the newly created path from the country that is going to be clicked
             return <Link  key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
@@ -94,12 +80,28 @@ const DataRendering = ( props ) => {
             })
             :
             null
+
+
+            
+      let renderCountries = countriesData ? countriesData.map((country, key ) => { 
+            return <Link key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
+                        <CountryCard 
+                           
+                              countryFlag       ={country.flag} 
+                              countryName       ={country.name} 
+                              countryRegion     ={country.region}
+                              countryCapital    ={country.capital}
+                              countryPopulation ={country.population}
+                              />
+                  </Link>                
+      })    
+: null
  
       
       return <div className=" container-fluid d-flex justify-content-center flex-wrap p-0">
       <div className="search-main-wrapper mt-5 d-flex  flex-column  justify-content-sm-center justify-content-md-between flex-md-row   ">
-                  <div className="form-group has-search">
-                        <span className="fa fa-search form-control-feedback"></span>
+                  <div className="form-group has-search mb-0">
+                        <span className="fa fa-search text-white form-control-feedback"></span>
                               <input 
                                     
                                     onChange={searchHandler} 
@@ -107,12 +109,13 @@ const DataRendering = ( props ) => {
                                     autoComplete="off"
                                     name="searchCountry" 
                                     type="text" 
-                                    className="search-input-control form-control" 
+                                    className="search-input-control form-control text-white" 
                                     placeholder="Search"     
                               />
                   </div>      
                      
                         <select  onChange={filterByRegion} className="select-region d-block  ">
+                              <option value="" selected disabled hidden>Filter By Region</option>
                               <option name=""         value="" >All</option>
                               <option name="Europe"   value="Europe">Europe</option>
                               <option name="Africa"   value="Africa">Africa</option>
