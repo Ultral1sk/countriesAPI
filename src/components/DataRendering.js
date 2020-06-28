@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { Link }            from 'react-router-dom'
-import CountryCard         from './CountryCard'
+import CountryCard         from '../assets/CountryCard'
 
 
 const DataRendering = ( props ) => {
 
       // this data is a state that is passed from the parrent component
       let countriesData =  props.state;
+      let toggleMode = props.toggleMode     
+                                                            
       const [ toggleClasses   , settoggleClasses ]    = useState(true)
       const [ toggleData      , settoggleData ]       = useState(true)
       const [ toggleRegion    , settoggleRegion ]     = useState(false)
-      const [ searchCountry   , setSearchCountry ]    = useState('')
+      const [ searchCountry   , setSearchCountry ]    = useState('')          // input value 
       const [ filteredCountry , setFilteredCountry ]  = useState('')
       const [ filterRegions   , setFilterRegions ]    = useState([])
       const [ targetedRegion  , setTargetedRegion ]   = useState([])
@@ -48,13 +50,16 @@ const DataRendering = ( props ) => {
             //taking the converted data and giving it in a new state so i can filter through after
             return setFilteredCountry(filteredCountry);
       }
+
+     
       
       // here since the data wont be comming immediately we have to take into consideration that the value inside the countriesData will be undefined
       // and we have to make a condition otherwise it'll throw an error   
-      const countryToFilter = filteredCountry ?  filteredCountry.map((country, key ) => { 
+ 
+      const countryToFilter = filteredCountry  ?  filteredCountry.map((country, key ) => { 
             return <Link  key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
                         <CountryCard 
-                             
+                              toggleMode        ={toggleMode}
                               countryFlag       ={country.flag} 
                               countryName       ={country.name} 
                               countryRegion     ={country.region}
@@ -64,12 +69,13 @@ const DataRendering = ( props ) => {
                   </Link>                
             })
             : null
-
+     
+            console.log(`filtered country`,filteredCountry)
       const regionToFilter = targetedRegion ?  targetedRegion.map((country, key ) => { 
                   //on click send the value to the newly created path from the country that is going to be clicked
             return <Link  key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
                         <CountryCard 
-                             
+                              toggleMode        ={toggleMode}
                               countryFlag       ={country.flag} 
                               countryName       ={country.name} 
                               countryRegion     ={country.region}
@@ -86,7 +92,7 @@ const DataRendering = ( props ) => {
       let renderCountries = countriesData ? countriesData.map((country, key ) => { 
             return <Link key={key}  className="text-dark text-decoration-none " to={{ pathname: `/country/${country.name}`, state:  country }} >
                         <CountryCard 
-                           
+                              toggleMode        ={toggleMode}
                               countryFlag       ={country.flag} 
                               countryName       ={country.name} 
                               countryRegion     ={country.region}
@@ -98,10 +104,10 @@ const DataRendering = ( props ) => {
 : null
  
       
-      return <div className=" container-fluid d-flex justify-content-center flex-wrap p-0">
+      return <div className= {`container-fluid d-flex justify-content-center flex-wrap p-0 ${toggleMode ? "toggleBackgroundModeDark" : "toggleModeWhite"  }`}>
       <div className="search-main-wrapper mt-5 d-flex  flex-column  justify-content-sm-center justify-content-md-between flex-md-row   ">
                   <div className="form-group has-search mb-0">
-                        <span className="fa fa-search text-white form-control-feedback"></span>
+                        <span className={` fa fa-search   form-control-feedback ${toggleMode ? "inputIconDarkMode" : "inputIconLightMode"}`}></span>
                               <input 
                                     
                                     onChange={searchHandler} 
@@ -109,12 +115,12 @@ const DataRendering = ( props ) => {
                                     autoComplete="off"
                                     name="searchCountry" 
                                     type="text" 
-                                    className="search-input-control form-control text-white" 
+                                    className={`search-input-control form-control    ${toggleMode ? "toggleBackgroundElementModeDark" : "toggleModeWhite"}  `}
                                     placeholder="Search"     
                               />
                   </div>      
                      
-                        <select  onChange={filterByRegion} className="select-region d-block  ">
+                        <select defaultValue="" onChange={filterByRegion} className={`select-region d-block  mt-4 mt-md-0  ${toggleMode ? "toggleBackgroundElementModeDark" : "toggleModeWhite"}` }>
                               <option value="" selected disabled hidden>Filter By Region</option>
                               <option name=""         value="" >All</option>
                               <option name="Europe"   value="Europe">Europe</option>
@@ -129,15 +135,15 @@ const DataRendering = ( props ) => {
                         
       </div> 
 
-      <div className=" container-fluid d-flex justify-content-center flex-wrap ">
+      <div className=" container-fluid d-flex justify-content-center flex-wrap">
             {         
-                  toggleData        ?  <div id={toggleClasses ? "rendered-country-data-on" : 'rendered-country-data-off' }>  {renderCountries} </div>
-                                    :  <div id={toggleClasses ? "rendered-country-data-on" : 'rendered-country-data-off' } >  {countryToFilter} </div>
+                  toggleData        ?  <div id={toggleClasses ? "rendered-country-data-on" : 'rendered-country-data-off' }>   { renderCountries } </div>
+                                    :  <div id={toggleClasses ? "rendered-country-data-on" : 'rendered-country-data-off' } >  { filteredCountry.length !== 0 ?  countryToFilter  :  <div className="h3" style={{ height: '60vh'}}>No Country Found</div> }</div>
             }
 
             {
-                  toggleRegion      ?  <div id={toggleClasses ? 'rendered-country-data-off'  : 'rendered-country-data-on'  }>  {regionToFilter} </div>
-                                    :  <div id={toggleClasses ? 'rendered-country-data-off'  : 'rendered-country-data-on'  }>  {countryToFilter} </div>
+                  toggleRegion      ?  <div id={toggleClasses ? 'rendered-country-data-off'  : 'rendered-country-data-on'  }> { regionToFilter } </div>
+                                    :  <div id={toggleClasses ? 'rendered-country-data-off'  : 'rendered-country-data-on'  }> { filteredCountry.length !== 0 ?  countryToFilter  :  <div className="h3" style={{ height: '60vh'}}>No Country Found</div> } </div>
             } 
       </div>
            

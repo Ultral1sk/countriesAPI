@@ -1,25 +1,60 @@
-body {
 
- background-color: hsl(207, 26%, 17%) !important;
+a { 
+  text-decoration: none !important;
 }
+
+.toggleBackgroundModeDark { 
+ background-color: hsl(207, 26%, 17%) !important;
+ color: white !important;
+
+}
+
+.inputIconDarkMode {
+  
+  color: hsl(208, 30%, 12%) !important ;
+}
+.inputIconLightMode {
+  color: rgb(0, 0, 0) !important;
+}
+
+
+.toggleBackgroundElementModeDark { 
+  background-color: hsl(209, 23%, 22%) !important;
+  color: white !important;
+
+ }
+ .toggleModeWhite::placeholder { 
+   color: black !important;
+ }
+
+.toggleModeWhite {
+ background-color: white !important;
+ color: black !important;
+
+}
+.toggleModeNavbarBg {
+  background-color: rgb(0, 0, 0) !important;
+  color: white !important;
+ 
+ }
+
 *:focus {
-  outline: hsl(209, 12%, 34%) solid 2px !important;
+  outline: none !important;
   border-radius: 10px !important;
 }
 
 
+
 /* NAVBAR */
 .navbar {
-  background-color: hsl(209, 23%, 22%) !important;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  width: 100%;
+  width: 100% ;
 }
 /* NAVBAR */
 
 
 /* CARD inner styling START*/
 .card-main-wrapper { 
-  background-color: hsl(209, 23%, 22%) !important;
   color: rgb(255, 255, 255) !important;
 }
 
@@ -44,11 +79,9 @@ body {
 /* SEARCH input styling START*/
 .has-search .form-control {
   padding-left: 2.375rem;
-  background-color: hsl(209, 23%, 22%)!important;
   border : none;
   outline: black !important;
   width: 300px;
-  color: white;
   box-shadow: 4px 3px 6px rgba(0,0,0,0.16), 4px 3px 6px rgba(0,0,0,0.23);
 }
 
@@ -59,7 +92,6 @@ body {
 
 .search-input-control {
   height: 3rem !important;
-  color: black !important;
 }
 .search-input-control:focus {
   outline: black !important;
@@ -80,7 +112,7 @@ body {
   
 }
 .search-main-wrapper {
-  max-width: 66%;
+  max-width: 75%;
   width: 100%;
   margin: 0 auto;
   height: 25vh;
@@ -111,7 +143,6 @@ body {
 .backButton{
   background-color: hsl(209, 23%, 22%);
   border: 1px solid #00000038;
-  color: white !important;
   border-radius: 5px;
   box-shadow: 4px 3px 6px rgba(0,0,0,0.16), 4px 3px 6px rgba(0,0,0,0.23);
 
@@ -141,8 +172,6 @@ body {
 
 /* Select Region styling */
 .select-region {
-  background-color: hsl(209, 23%, 22%) !important;
-  color: white;
   border: none !important;
   padding: 0.2rem 2rem 0.2rem 0.5rem;
   margin-right: 0.5rem;
@@ -152,14 +181,18 @@ body {
 
 }
 
+
+
 select:focus {
-  background-color: hsl(209, 23%, 22%) !important;
   outline: none !important;
   border-radius: 5px !important;
   border: none !important;
+  border :  1px solid hsl(209, 23%, 22%) !important;;
+  border-radius: 5px;
 }
 
 /* Select Region styling */
+
 
 
 
