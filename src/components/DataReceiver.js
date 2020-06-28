@@ -7,6 +7,7 @@ const DataReceiver = ( props ) => {
       const history = useHistory();
       const incommingProps = history.location.state  
       const toggleMode = props.toggleMode
+      
       const borders = incommingProps.borders.map( ( border,key ) => <span key={ key } className=" badge badge-pill badge-danger ml-1 mr-2 ">
                                                                               { border }
                                                                     </span>

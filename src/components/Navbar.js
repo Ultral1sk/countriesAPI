@@ -6,6 +6,7 @@ const Navbar = (props) => {
       const [state, setstate] = useState(true)
 
       let toggleModeHandler = props.clickHandler
+      
       const toggleParrentState =  () => {
             setstate(!state)
          return  toggleModeHandler(!state)

@@ -14,13 +14,13 @@ const DataRendering = ( props ) => {
       const [ toggleRegion    , settoggleRegion ]     = useState(false)
       const [ searchCountry   , setSearchCountry ]    = useState('')          // input value 
       const [ filteredCountry , setFilteredCountry ]  = useState('')
-      const [ filterRegions   , setFilterRegions ]    = useState([])
+      // const [ filterRegions   , setFilterRegions ]    = useState([])
       const [ targetedRegion  , setTargetedRegion ]   = useState([])
 
 
       const filterByRegion = async (e) => {
             // toggling the components in the render  as they become JSX parts
-            setFilterRegions(e.target.value)
+            // setFilterRegions(e.target.value)
             settoggleClasses(false)
             settoggleRegion(true)
          

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { Route, Switch }                      from 'react-router-dom'
-import axios                          from 'axios'
-import Loading                        from './assets/Loading'
-import DataReceiver                  from './components/DataReceiver';
-import Navbar                         from './components/Navbar';
-import ErrorRoute                     from './assets/ErrorRoute';
+import { Route, Switch }                        from 'react-router-dom'
+import axios                                    from 'axios'
+import Loading                                  from './assets/Loading'
+import DataReceiver                             from './components/DataReceiver';
+import Navbar                                   from './components/Navbar';
+import ErrorRoute                               from './assets/ErrorRoute';
 import './App.css';
 
 const DataRendering = React.lazy(() => import('./components/DataRendering'));
